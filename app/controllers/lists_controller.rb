@@ -1,27 +1,33 @@
 class ListsController < ApplicationController
 
     def index
-
+        @lists = List.all
     end 
 
     def new
-
+        @list = List.new
     end 
 
     def create 
-
+        if list = List.create(list_params)
+            redirect_to list_path(list)
+        else
+            redirect_to lists
+        end 
     end 
 
     def show
-
+        @list = List.find_by(id: params[:id])
     end 
 
     def edit
-
+        @list = List.find_by(id: params[:id])
     end 
 
     def update 
-
+        @list = List.find_by(id: params[:id])
+        @lsit.update(list_params)
+        redirect_to list_path(list)
     end 
 
     private 
