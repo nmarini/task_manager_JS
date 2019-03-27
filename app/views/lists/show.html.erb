@@ -24,4 +24,11 @@
         </tr>
     </tbody>
     </table>
+    <% if current_user.lists.include?(@list) %>
+    <p>
+        <%= form_for(@list), controller: 'lists', action: 'destroy' do %>
+            <%= f.submit "Delete List" %>
+        <% end %>
+    </p>
+<% end %>
 </div>
