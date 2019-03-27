@@ -12,12 +12,12 @@
       <% end %>
       </ul>
     </div>
-  <% end %>
+    <% end %>
 
   <%= f.label :title %>
   <%= f.text_field :title %>
   <br>
-  <% hidden_field_tag :user_id, current_user.id%>
+  <%= f.hidden_field :user_id %>
 
   <%= f.submit class: "btn btn-primary" %>
 

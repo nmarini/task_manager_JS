@@ -5,14 +5,15 @@ class ListsController < ApplicationController
     end 
 
     def new
-        @list = List.new
+        @list = List.new(user_id: current_user.id)
+        
     end 
 
     def create 
         if list = List.create(list_params)
-            redirect_to user_list_path(list)
+            redirect_to user_list_path(current_user, list)
         else
-            redirect_to new_user_list_path
+            redirect_to new_user_list_path(current_user)
         end 
     end 
 
