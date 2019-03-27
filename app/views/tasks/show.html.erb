@@ -1,0 +1,7 @@
+<h1><%= @task.title %></h1>
+<h3>Status: <%= @task.completed ? "Complete" : "Incomplete" %></h3>
+<% if current_user.tasks.include?(@task) %>
+    <h3><%= link_to "Change Title/Status", edit_user_task_path(@task) %></h3>
+<% end %>
+
+<p>Note: <%= @task.note %></p>
