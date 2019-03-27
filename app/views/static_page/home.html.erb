@@ -1,9 +1,16 @@
-<div>
+<div class="centered">
     <% if current_user %>
         <h1>Hello <%= current_user.name %>!</h1>
         <p>Visit <%= link_to "Your Page", user_path(current_user.id) %></p>
         <p><%= link_to "Log Out", controller: 'sessions', action: 'destroy' %></p>
     <% else %>
+        <div>    
+            <h1>Welcome to Task Manager!</h1>
+            
+            <p>We are here to help you organize your work-life.</p>
+            
+            <p>Please signup or login bellow... </p>
+        </div>
         <p><%= link_to "Sign Up", signup_path %></p>
         <p><%= link_to "Log In", login_path %></p>
         <p><%= link_to('Log in with Facebook!', '/auth/facebook') %></p>
