@@ -10,9 +10,9 @@ class ListsController < ApplicationController
 
     def create 
         if list = List.create(list_params)
-            redirect_to list_path(list)
+            redirect_to user_list_path(list)
         else
-            redirect_to lists
+            redirect_to new_user_list_path
         end 
     end 
 
@@ -26,7 +26,7 @@ class ListsController < ApplicationController
 
     def update 
         @list = List.find_by(id: params[:id])
-        @lsit.update(list_params)
+        @list.update(list_params)
         redirect_to list_path(list)
     end 
 
