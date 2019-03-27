@@ -1,0 +1,27 @@
+<h1><%= @list.title %></h1>
+<% if current_user.lists.include?(@list) %>
+<p><%= link_to "change title", edit_user_list_path(@list) %></p>
+<% end %>
+
+<div>
+    <table class="table">
+    <tbody>
+        <tr>
+            <th>Task</th>
+            <th>Complete/Incomplete</th>
+            <th>Checkout Task</th>
+        </tr>
+        <% @list.tasks.each do |task| %>
+        <tr>
+            <td><%= task.title %></td>
+            <% if task.completed %>
+                <td>Complete</td>
+            <% else %>
+                <td>Incomplete</td>
+            <% end %>
+            <td><%= link_to "Checkout #{task.title}", list_task_path(task) %></td>
+        <% end %>
+        </tr>
+    </tbody>
+    </table>
+</div>
