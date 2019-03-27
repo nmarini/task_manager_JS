@@ -1,5 +1,12 @@
-<h1>StaticPage#home</h1>
-<p>Find me in app/views/static_page/home.html.erb</p>
+<div>
+    <% if current_user %>
+        <h1>Hello <%= current_user.name %>!</h1>
+        <p>Visit <%= link_to "Your Page", user_path(current_user.id) %></p>
+        <p><%= link_to "Log Out", controller: 'sessions', action: 'destroy' %></p>
+    <% else %>
+        <p><%= link_to "Sign Up", signup_path %></p>
+        <p><%= link_to "Log In", login_path %></p>
+        <p><%= link_to('Log in with Facebook!', '/auth/facebook') %></p>
+    <% end %>
+</div>
 
-
-<%= link_to('Log in with Facebook!', '/auth/facebook') %>
