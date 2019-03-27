@@ -9,5 +9,7 @@ class User < ApplicationRecord
             user.password = SecureRandom.hex 
             user.name = auth_hash["info"]["name"]
         end  
-    end 
+    end
+    
+    
 end
