@@ -1,6 +1,7 @@
 <h1><%= @list.title %></h1>
 <% if current_user.lists.include?(@list) %>
-<p><%= link_to "change title", edit_user_list_path(@list) %></p>
+<p><%= link_to "Change Title", edit_user_list_path(@list) %></p>
+<p><%= link_to "Add a Task", new_list_task %></p>
 <% end %>
 
 <div>
