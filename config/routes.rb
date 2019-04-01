@@ -6,17 +6,18 @@ Rails.application.routes.draw do
   post '/login' => 'session#create'
   get '/auth/facebook/callback' => 'sessions#create'
   post '/logout' => 'session#destroy'
+  
 
   resources :tasks, only: [:create, :destroy, :edit, :update] do 
     resources :users, only: [:show]
   end 
 
   resources :lists, only: [:index, :show, :create, :update] do
-    resources :tasks, only: [:new, :show, :edit]
+    resources :tasks, only: [:new, :show, :edit, :destroy]
   end 
 
   resources :users, only: [:create, :destroy, :edit, :update, :show] do
-    resources :lists, only: [:new, :edit, :show]
+    resources :lists, only: [:new, :edit, :show, :destroy]
   end
   
   resources :users do 
