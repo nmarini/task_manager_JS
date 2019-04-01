@@ -27,7 +27,7 @@
     </table>
     <% if current_user.lists.include?(@list) %>
     <p>
-        <%= form_for(@list, url: {controller: 'lists', action: 'destroy'}) do |f| %>
+        <%= form_for @list, method: :delete do |f| %>
             <%= f.submit "Delete List" %>
         <% end %>
     </p>

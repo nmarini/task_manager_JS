@@ -1,8 +1,7 @@
 class TasksController < ApplicationController
 
     def new
-        @task = Task.new
-        @list = List.find_by(id: params[:id])
+        @task = Task.new(list_id: params[:list_id])
     end 
 
     def create 

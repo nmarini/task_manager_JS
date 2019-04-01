@@ -27,6 +27,7 @@ class ListsController < ApplicationController
 
     def update 
         list = List.find_by(id: params[:id])
+    
         list.update(list_params)
         redirect_to list_path(list)
     end 
@@ -34,6 +35,7 @@ class ListsController < ApplicationController
     def destroy 
         list = List.find_by(id: params[:id])
         list.destroy
+        redirect_to user_path(current_user)
     end 
 
     private 
