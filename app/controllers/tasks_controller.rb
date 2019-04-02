@@ -36,6 +36,6 @@ class TasksController < ApplicationController
     private 
 
     def task_params
-        params.require(:task).permit(:title, :note, :list_id, :completed)
+        params.require(:task).permit(:title, :note, :list_id, :completed, user_ids: [])
     end 
 end

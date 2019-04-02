@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   get '/login' => 'session#new'
   post '/login' => 'session#create'
   get '/auth/facebook/callback' => 'sessions#create'
-  post '/logout' => 'session#destroy'
+  get '/logout' => 'session#destroy'
   
 
   resources :tasks, only: [:create, :destroy, :edit, :update] do 
