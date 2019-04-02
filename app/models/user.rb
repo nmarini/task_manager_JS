@@ -12,5 +12,7 @@ class User < ApplicationRecord
         end  
     end
     
-    
+    def list_tasks(list)
+        list.tasks 
+    end 
 end

@@ -1,7 +1,9 @@
 <h1><%= @task.title %></h1>
 <p>Note: <%= @task.note %></p>
+<p>Return to <%= link_to 'List', list_path(@task.list) %></p>
 <h3>Status: <%= @task.completed ? "Complete" : "Incomplete" %></h3>
-<% if current_user.tasks.include?(@task) %>
+
+<% if current_user.list_tasks(@task.list).include?(@task) %>
     <h3><%= link_to "Change Title/Status", edit_user_task_path(@task) %></h3>
 <% end %> 
 <h3>Users Assigned to Task:</h3>

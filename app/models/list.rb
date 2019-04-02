@@ -5,4 +5,6 @@ class List < ApplicationRecord
     def list_complete?
         !tasks.any?{|task| task.completed == false}
     end 
+
+ 
 end
