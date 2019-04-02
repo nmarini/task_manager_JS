@@ -8,8 +8,8 @@
 
 <% if @task.list.user == current_user %>
     <p>
-        <%= form_for @task, url: {controller: 'tasks', action: 'destroy'} do |f|%>
-        <%= f.submit "Delete Task" %>
+        <%= form_for @task, method: :delete do |f|%>
+            <%= f.submit "Delete Task" %>
         <% end %>
     </p>
 <% end %> 
