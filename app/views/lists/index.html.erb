@@ -1,0 +1,42 @@
+<div>
+    <% if @completed_lists %>
+    <div>
+        <h1 class="text-success">Completed Lists</h1>
+        <table class="table">
+        <tbody>
+            <tr>
+                <th>Lists</th>
+                <th>Expand List</th>
+            </tr>
+            <% @completed_lists.each do |list| %>
+            <tr>
+                <td><%= list.title %></td>
+                <td><%= link_to "Expand #{list.title}", list_path(list) %></td>
+            <% end %>
+            </tr>
+        </tbody>
+        </table>
+    </div>
+    <% end %>
+    
+    <% if @incomplete_lists %>
+    <div>
+        <h1 class="text-danger">Incomplete Lists</h1>
+        <table class="table">
+        <tbody>
+            <tr>
+                <th>Lists</th>
+                <th>Expand List</th>
+            </tr>
+            <% @incomplete_lists.each do |list| %>
+            <tr>
+                <td><%= list.title %></td>
+                <td><%= link_to "Expand #{list.title}", list_path(list) %></td>
+            <% end %>
+            </tr>
+        </tbody>
+        </table>
+    </div>
+    <% end %>
+
+</div>
