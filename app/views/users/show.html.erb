@@ -37,11 +37,7 @@
         <% @user.tasks.each do |task| %>
             <tr>
                 <td><%= task.title %></td>
-            <% if task.completed %>
-                <td>Complete</td>
-            <% else %>
-                <td>Incomplete</td>
-            <% end %>
+                <td><% task.status %></td>
                 <td><%= link_to "Checkout #{task.title}", user_task_path(task) %></td>
         <% end %>
         </tr>

@@ -20,8 +20,8 @@
   <%= f.label :note %>
   <%= f.text_field :note %>
   <br>
-  <%= f.label :completed %>
-  <%= check_box_tag 'Complete', true %>
+  <%= f.label :status %>
+  <%= check_box_tag 'Complete', 'complete' %>
   <br>
 
   <%= f.submit class: "btn btn-primary" %>
