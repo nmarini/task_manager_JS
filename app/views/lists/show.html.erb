@@ -15,7 +15,11 @@
         <% @list.tasks.each do |task| %>
         <tr>
             <td><%= task.title %></td>
-            <td><%= task.status %></td>
+            <% if task.status == "Complete" %>
+            <td class="text-success"><%= task.status %></td>
+            <% else %>
+            <td class="text-danger"><%= task.status %></td>
+            <% end %>
             <td><%= link_to "Checkout #{task.title}", list_task_path(task) %></td>
         <% end %>
         </tr>

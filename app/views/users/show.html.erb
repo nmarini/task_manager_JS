@@ -14,9 +14,9 @@
                 <tr>
                     <td><%= list.title %></td>
                 <% if list.list_complete? %>
-                    <td>Complete</td>
+                    <td class="text-success">Complete</td>
                 <% else %>
-                    <td>Incomplete</td>
+                    <td class="text-danger">Incomplete</td>
                 <% end %>
                 <td><%= link_to "Expand #{list.title}", user_list_path(@user, list) %></td>
             <% end %>
@@ -37,7 +37,11 @@
         <% @user.tasks.each do |task| %>
             <tr>
                 <td><%= task.title %></td>
-                <td><% task.status %></td>
+                <% if task.status == "Complete" %>
+                <td class="text-success"><%= task.status %></td>
+                <% else %>
+                <td class="text-danger"><%= task.status %></td>
+                <% end %>
                 <td><%= link_to "Checkout #{task.title}", user_task_path(task) %></td>
         <% end %>
         </tr>

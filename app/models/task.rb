@@ -4,7 +4,7 @@ class Task < ApplicationRecord
     belongs_to :list
     
     def status
-        users_task ? "Complete" : "Incomplete"
+        users_task == true ? "Complete" : "Incomplete"
     end 
     
 end
