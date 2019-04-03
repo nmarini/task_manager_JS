@@ -2,7 +2,11 @@
 
 <div>
     <div>
+    <% if current_user == @user %>
     <h2>Your Lists:</h2>
+    <% else %>
+    <h2>Their Lists:</h2>
+    <% end %>
     <table class="table">
         <tbody>
             <tr>
@@ -27,6 +31,11 @@
     </div>
     <div>
     <h2>Your Tasks:</h2>
+    <% else %>
+    <h2>Their Tasks:</h2>
+    <% end %>
+    <table class="table">
+    
     <table class="table">
     <tbody>
         <tr>
