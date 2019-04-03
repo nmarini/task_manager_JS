@@ -1,42 +1,23 @@
 <div>
-    <% if @completed_lists %>
-    <div>
-        <h1 class="text-success">Completed Lists</h1>
-        <table class="table">
-        <tbody>
-            <tr>
-                <th>Lists</th>
-                <th>Expand List</th>
-            </tr>
-            <% @completed_lists.each do |list| %>
-            <tr>
-                <td><%= list.title %></td>
-                <td><%= link_to "Expand #{list.title}", list_path(list) %></td>
-            <% end %>
-            </tr>
-        </tbody>
-        </table>
-    </div>
+<table class="table">
+<tbody>
+    <tr>
+        <th>Lists</th>
+        <th>Complete/Incomplete</th>
+        <th>Expand List</th>
+    </tr>
+    <% @lists.each do |list| %>
+        <tr>
+            <td><%= list.title %></td>
+        <% if list.list_complete? %>
+            <td class="text-success">Complete</td>
+        <% else %>
+            <td class="text-danger">Incomplete</td>
+        <% end %>
+        <td><%= link_to "Expand #{list.title}", list_path(list) %></td>
     <% end %>
-    
-    <% if @incomplete_lists %>
-    <div>
-        <h1 class="text-danger">Incomplete Lists</h1>
-        <table class="table">
-        <tbody>
-            <tr>
-                <th>Lists</th>
-                <th>Expand List</th>
-            </tr>
-            <% @incomplete_lists.each do |list| %>
-            <tr>
-                <td><%= list.title %></td>
-                <td><%= link_to "Expand #{list.title}", list_path(list) %></td>
-            <% end %>
-            </tr>
-        </tbody>
-        </table>
-    </div>
-    <% end %>
+    </tr>
+</tbody>
+</table>
 
 </div>

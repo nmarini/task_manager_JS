@@ -2,27 +2,7 @@
     <% if current_user %>
         <h1>Hello <%= current_user.name %>!</h1>
      
-        <table class="table">
-        <tbody>
-            <tr>
-                <th>Lists</th>
-                <th>Complete/Incomplete</th>
-                <th>Expand List</th>
-            </tr>
-            <% @lists.each do |list| %>
-                <tr>
-                    <td><%= list.title %></td>
-                <% if list.list_complete? %>
-                    <td class="text-success">Complete</td>
-                <% else %>
-                    <td class="text-danger">Incomplete</td>
-                <% end %>
-                <td><%= link_to "Expand #{list.title}", list_path(list) %></td>
-            <% end %>
-            </tr>
-        </tbody>
-    </table>
-
+    <h1>PUT SOMETHING HERE </h1>
         
         <p><%= link_to "Log Out", logout_path %></p>
     <% else %>

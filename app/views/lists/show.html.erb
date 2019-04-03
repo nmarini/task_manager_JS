@@ -1,4 +1,5 @@
 <h1><%= @list.title %></h1>
+<h5>Created by: <%= link_to @list.user.name, user_path(@list.user) %> </h5>
 <% if current_user.lists.include?(@list) %>
 <p><%= link_to "Change Title", edit_user_list_path(@list) %></p>
 <p><%= link_to "Add a Task", new_list_task_path(@list) %></p>

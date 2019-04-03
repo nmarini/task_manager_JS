@@ -1,8 +1,7 @@
 class ListsController < ApplicationController
 
     def index
-        @completed_lists = List.completed_lists
-        @incomplete_lists = List.incomplete_lists
+        @lists = List.all
     end 
 
     def new
