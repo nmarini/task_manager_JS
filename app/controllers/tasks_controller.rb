@@ -8,8 +8,8 @@ class TasksController < ApplicationController
         if task = Task.create(task_params)
             redirect_to list_task_path(task.list, task)
         else
-            list = List.find_by(id: params[:id])
-            redirect_to new_list_task_path(list) 
+            @list = List.find_by(id: params[:id])
+            redirect_to new_list_task_path(@list) 
         end
     end 
 
@@ -36,6 +36,6 @@ class TasksController < ApplicationController
     private 
 
     def task_params
-        params.require(:task).permit(:title, :note, :list_id, :completed, user_ids: [])
+        params.require(:task).permit(:title, :note, :list_id, :status, user_ids: [])
     end 
 end

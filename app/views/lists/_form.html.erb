@@ -2,17 +2,18 @@
 
     <% if @list.errors.any? %>
     <div id="error_explanation">
-      <h2>
+      <h2 class="text-danger">
         <%= pluralize(@list.errors.count, "error") %> prohibited this list from being saved:
       </h2>
 
       <ul>
       <% @list.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
+        <li class="text-danger"><%= message %></li>
       <% end %>
       </ul>
     </div>
     <% end %>
+
 
   <%= f.label :title %>
   <%= f.text_field :title %>

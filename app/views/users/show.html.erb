@@ -53,7 +53,7 @@
             <% @user.tasks.each do |task| %>
                 <tr>
                     <td><%= task.title %></td>
-                    <% if task.status == "Complete" %>
+                    <% if task.completed %>
                     <td class="text-success"><%= task.status %></td>
                     <% else %>
                     <td class="text-danger"><%= task.status %></td>

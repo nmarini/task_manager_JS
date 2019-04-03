@@ -23,6 +23,7 @@ ActiveRecord::Schema.define(version: 2019_04_02_014559) do
     t.string "title"
     t.string "note"
     t.integer "list_id"
+    t.boolean "completed", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -38,6 +39,7 @@ ActiveRecord::Schema.define(version: 2019_04_02_014559) do
   create_table "users_tasks", force: :cascade do |t|
     t.integer "user_id"
     t.integer "task_id"
+    t.boolean "accepted", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

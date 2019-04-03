@@ -18,11 +18,9 @@ class User < ApplicationRecord
         end  
     end
     
-    def list_tasks(list)
-        if lists.include?(list)
+    def list_tasks(user_list)
+        if lists.include?(user_list)
             list.tasks 
-        else 
-            "not your list"
         end 
     end 
 end

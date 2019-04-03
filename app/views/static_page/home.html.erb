@@ -1,8 +1,38 @@
 <div class="centered">
     <% if current_user %>
         <h1>Hello <%= current_user.name %>!</h1>
-     
-    <h1>PUT SOMETHING HERE </h1>
+    <div>
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Title</th>
+                <th>Complete/Incomplete</th>
+                <th>Accepeted/Unaccepted</th>
+                <th>Checkout Task</th>
+            </tr>
+            <% @user.tasks.each do |task| %>
+                <tr>
+                    <td><%= task.title %></td>
+
+                    <% if task.completed %>
+                    <td class="text-success"><%= task.status %></td>
+                    <% else %>
+                    <td class="text-danger"><%= task.status %></td>
+                    <% end %>
+
+                    <% if task.accepted %>
+                    <td class="text-success">Accepted</td>
+                    <% else %>
+                    <td class="text-danger">Unaccepted</td>
+                    <% end %>
+
+                    <td><%= link_to "Checkout #{task.title}", user_task_path(task) %></td>
+            <% end %>
+            </tr>
+        </tbody>
+        </table>
+        </div>
+    
         
         <p><%= link_to "Log Out", logout_path %></p>
     <% else %>

@@ -1,19 +1,63 @@
-<div >
+<div>
+    <% if @task.errors.any? %>
+    <div id="error_explanation">
+    <h2 class="text-danger">
+        <%= pluralize(@task.errors.count, "error") %> prohibited this task from being saved:
+    </h2>
+
+    <ul>
+    <% @task.errors.full_messages.each do |message| %>
+        <li class="text-danger"><%= message %></li>
+    <% end %>
+    </ul>
+    </div>
+    <% end %>
 <div>
     <h1><%= @task.title %></h1>
-    <p>Note: <%= @task.note %></p>
+    <% if @task.completed %>
+    <p class="text-info"><span class="border border-success">Note: <%= @task.note %></span></p>
+    <% else %>
+    <p class="text-info"><span class="border border-danger">Note: <%= @task.note %></span></p>
+    <% end %>
     <p>Return to list: <%= link_to @task.list.title, list_path(@task.list) %></p>
-    <p>Status: <%= @task.status %></p>
+    <% if @task.completed %>
+    <p class="text-info"><span class="border border-success">Status: <%= @task.status %></span></p>
+    <% else %>
+    <p class="text-info"><span class="border border-danger">Status: <%= @task.status %></span></p>
+    <% end %>
+    
 </div>
 <div>
-    <% if current_user.list_tasks(@task.list).include?(@task) %>
-        <p><%= link_to "Change Title/Status", edit_user_task_path(@task) %></p>
-    <% end %> 
+        <% if current_user.tasks.include?(@task) %>
+            <p><%= link_to "Change Title", edit_user_task_path(@task) %></p>
+            <div>
+                <div>
+                    <%= form_for(@task, url: {controller: 'tasks', action: 'update'}) do |f| %>
+                        <%= f.label :completed, "Complete" %>
+                        <%= check_box_tag :completed, true %>
+                        <br>
+                        <%= f.submit %>
+                    <% end %>
+                </div>
+
+                <div>
+                    <%= form_for(@task.users_task.find{|user| user == current_user}, url: {controller: 'userstasks', action: 'update'}) do |f| %>
+                        <%= f.label :accepted, "Accept Task" %>
+                        <%= check_bog_tag :accepted, true %>
+                        <br>
+                        <%= f.submit %>
+
+                    <% end %>
+                </div>
+                
+            </div>
+        <% end %>
+
     <p><b>Assign a User to this Task:<b></p>
     <%= form_for @task, url: {controller: 'tasks', action: 'update'} do |f|%>
         <%= collection_check_boxes(:task, :user_ids, User.all, :id, :name) %>
         <br>
-        <%= f.submit "Assign Selected" %>
+        <%= f.submit "Update Assignments" %>
     <% end %>
     <p><b>Users Assigned to Task:<b></p>
     <% if @task.users %>
