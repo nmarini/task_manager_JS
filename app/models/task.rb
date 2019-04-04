@@ -9,8 +9,8 @@ class Task < ApplicationRecord
         completed ? "Complete" : "Incomplete"
     end 
 
-    def accepted
-        users_task.accepted
+    def user_accepted(user)
+        users_task.find{|user_task|user_task.user_id == user.id}.accepted
     end 
     
 end

@@ -21,43 +21,32 @@
     <% end %>
     <p>Return to list: <%= link_to @task.list.title, list_path(@task.list) %></p>
     <% if @task.completed %>
-    <p class="text-info"><span class="border border-success">Status: <%= @task.status %></span></p>
+    <p class="text-info"><span class="text-success">Status: <%= @task.status %></span></p>
     <% else %>
-    <p class="text-info"><span class="border border-danger">Status: <%= @task.status %></span></p>
+    <p class="text-info"><span class="text-danger">Status: <%= @task.status %></span></p>
     <% end %>
     
 </div>
 <div>
-        <% if current_user.tasks.include?(@task) %>
-            <p><%= link_to "Change Title", edit_user_task_path(@task) %></p>
+        <% if current_user.lists.include?(@task) %>
             <div>
+            <p><%= link_to "Change Title", edit_user_task_path(@task) %></p>
                 <div>
                     <%= form_for(@task, url: {controller: 'tasks', action: 'update'}) do |f| %>
                         <%= f.label :completed, "Complete" %>
-                        <%= check_box_tag :completed, true %>
-                        <br>
-                        <%= f.submit %>
-                    <% end %>
-                </div>
-
-                <div>
-                    <%= form_for(@task.users_task.find{|user| user == current_user}, url: {controller: 'userstasks', action: 'update'}) do |f| %>
-                        <%= f.label :accepted, "Accept Task" %>
-                        <%= check_bog_tag :accepted, true %>
-                        <br>
-                        <%= f.submit %>
-
+                        <%= f.check_box :completed %>
+                        <%= f.submit "Update Status" %>
                     <% end %>
                 </div>
                 
             </div>
-        <% end %>
-
+    
     <p><b>Assign a User to this Task:<b></p>
     <%= form_for @task, url: {controller: 'tasks', action: 'update'} do |f|%>
         <%= collection_check_boxes(:task, :user_ids, User.all, :id, :name) %>
         <br>
         <%= f.submit "Update Assignments" %>
+    <% end %>
     <% end %>
     <p><b>Users Assigned to Task:<b></p>
     <% if @task.users %>

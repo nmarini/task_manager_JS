@@ -5,16 +5,18 @@ class TasksController < ApplicationController
     end 
 
     def create 
-        if task = Task.create(task_params)
+        task = Task.create(task_params)
+        if task.save
             redirect_to list_task_path(task.list, task)
         else
-            @list = List.find_by(id: params[:id])
+            @list = List.find_by(id: params[:task][:list_id])
             redirect_to new_list_task_path(@list) 
         end
     end 
 
     def show
         @task = Task.find_by(id: params[:id])
+        @users_task = @task.users_task.find{|user_task|user_task.user_id == current_user.id}
     end 
 
     def edit 
@@ -36,6 +38,6 @@ class TasksController < ApplicationController
     private 
 
     def task_params
-        params.require(:task).permit(:title, :note, :list_id, :status, user_ids: [])
+        params.require(:task).permit(:title, :note, :list_id, :completed, user_ids: [])
     end 
 end

@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   get '/signup' => 'users#new'
   get '/login' => 'session#new'
   post '/login' => 'session#create'
-  get '/auth/facebook/callback' => 'sessions#create'
+  get '/auth/facebook/callback' => 'session#create'
   get '/logout' => 'session#destroy'
   
 
@@ -23,5 +23,7 @@ Rails.application.routes.draw do
   resources :users do 
     resources :tasks, only: [:show, :edit]
   end 
+
+  resources :users_tasks
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

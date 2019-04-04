@@ -21,7 +21,7 @@
             <% else %>
             <td class="text-danger"><%= task.status %></td>
             <% end %>
-            <td><%= link_to "Checkout #{task.title}", list_task_path(task) %></td>
+            <td><%= link_to "Checkout #{task.title}", list_task_path(@list, task) %></td>
         <% end %>
         </tr>
     </tbody>

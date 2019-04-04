@@ -1,5 +1,26 @@
 <% if current_user == @user %>
     <h1><%= @user.name %></h1>
+    <p class="text-warning">ATTENTION NEEDED, please accept assigned tasks:</p>
+        <table class="table">
+        <tbody>
+        <tr>
+            <th>Tasks</th>
+            <th>Check and Accept</th>
+        </tr>
+        <% @user_tasks.each do |user_task| %>
+            <td><%= link_to user_task.task.title, user_task_path(user_task.task) %></td>
+            <td>
+            <%= form_for(user_task, url: users_task_path(user_task), method: :patch) do |f| %>
+                <%= f.check_box :accepted %>
+                <%= f.submit "Accept Task" %>
+            <% end %>
+            </td>
+        <% end %>
+        <tr>
+        </tr>
+        </tbody>
+        </table>
+        
 <% else %>
     <h1><%= @user.name %>'s Page</h1>
 <% end %>
@@ -48,6 +69,7 @@
             <tr>
                 <th>Title</th>
                 <th>Complete/Incomplete</th>
+                <th>Accepted/Unaccepted</th>
                 <th>Checkout Task</th>
             </tr>
             <% @user.tasks.each do |task| %>
@@ -57,6 +79,12 @@
                     <td class="text-success"><%= task.status %></td>
                     <% else %>
                     <td class="text-danger"><%= task.status %></td>
+                    <% end %>
+
+                    <% if task.user_accepted(@user) %>
+                    <td class="text-success">Accepted</td>
+                    <% else %>
+                    <td class="text-warning">Unaccepted</td>
                     <% end %>
                     <td><%= link_to "Checkout #{task.title}", user_task_path(task) %></td>
             <% end %>
