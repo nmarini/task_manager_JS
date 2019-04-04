@@ -37,6 +37,8 @@ class User < ApplicationRecord
     def list_tasks(user_list)
         if lists.include?(user_list)
             user_list.tasks 
+        else
+            []
         end 
     end 
 

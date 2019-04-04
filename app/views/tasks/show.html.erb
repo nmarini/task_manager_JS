@@ -61,7 +61,7 @@
     <% if @task.list.user == current_user %>
         <p>
             <%= form_for @task, method: :delete do |f|%>
-                <%= f.submit "Delete Task" %>
+                <%= f.submit "Delete Task", class: "text-danger" %>
             <% end %>
         </p>
     <% end %> 
