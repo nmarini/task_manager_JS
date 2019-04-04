@@ -18,6 +18,14 @@ class User < ApplicationRecord
         end  
     end
 
+    def unaccepted_tasks
+        tasks.collect do |task|
+            if !task.user_accepted(self)
+                task
+            end 
+        end 
+    end 
+
     def accepted_tasks 
         tasks.collect do |task| 
             if task.user_accepted(self) 
@@ -28,7 +36,9 @@ class User < ApplicationRecord
     
     def list_tasks(user_list)
         if lists.include?(user_list)
-            list.tasks 
+            user_list.tasks 
         end 
     end 
+
+
 end
