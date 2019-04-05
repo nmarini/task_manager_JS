@@ -5,12 +5,12 @@ class TasksController < ApplicationController
     end 
 
     def create 
-        task = Task.create(task_params)
-        if task.save
+        @task = Task.create(task_params)
+        if @task.save
             redirect_to list_task_path(task.list, task)
         else
             @list = List.find_by(id: params[:task][:list_id])
-            redirect_to new_list_task_path(@list) 
+            render 'new' 
         end
     end 
 
@@ -24,9 +24,12 @@ class TasksController < ApplicationController
     end 
 
     def update
-        task = Task.find_by(id: params[:id])
-        task.update(task_params)
-        redirect_to list_task_path(task.list, task)
+        @task = Task.find_by(id: params[:id])
+        if task.update(task_params)
+            redirect_to list_task_path(task.list, task)
+        else 
+            render 'edit'
+        end 
     end
 
     def destroy 
