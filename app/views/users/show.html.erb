@@ -1,27 +1,45 @@
-<% if current_user == @user %> 
-    <% unless @user.unaccepted_users_tasks.empty? %>
-    <p class="text-warning">ATTENTION NEEDED, please accept assigned tasks:</p>
-        <table class="table">
-        <tbody>
-        <tr>
-            <th>Tasks</th>
-            <th>Accept</th>
-        </tr>
-        <% @user.unaccepted_users_tasks.each do |user_task| %>
-        <tr>
-            <td><%= link_to user_task.task.title, user_task_path(user_task.task) %></td>
-            <td>
-            <%= form_for(user_task, url: users_task_path(user_task), method: :patch) do |f| %>
+<div>
+    <% if @user.errors.any? %>
+        <div id="error_explanation">
+            <h2 class="text-danger">
+                <%= pluralize(@user.errors.count, "error") %> prohibited an update from occuring:
+            </h2>
 
-                <%= f.hidden_field :accepted, value: true %>
-                <%= f.submit "Accept Task" %>
+            <ul>
+            <% @user.errors.full_messages.each do |message| %>
+                <li class="text-danger"><%= message %></li>
             <% end %>
-            </td>
-        </tr>
-        <% end %>
-        </tbody>
-        </table>
-        <% end %>
+            </ul>
+        </div>
+    <% end %>
+    <div>
+    <% if current_user == @user %> 
+        <% unless @user.unaccepted_users_tasks.empty? %>
+        <p class="text-warning">ATTENTION NEEDED, please accept assigned tasks:</p>
+            <table class="table">
+            <tbody>
+            <tr>
+                <th>Tasks</th>
+                <th>Accept</th>
+            </tr>
+            <% @user.unaccepted_users_tasks.each do |user_task| %>
+            <tr>
+                <td><%= link_to user_task.task.title, user_task_path(user_task.task) %></td>
+                <td>
+                <%= form_for(user_task, url: users_task_path(user_task), method: :patch) do |f| %>
+
+                    <%= f.hidden_field :accepted, value: true %>
+                    <%= f.submit "Accept Task" %>
+                <% end %>
+                </td>
+            </tr>
+            <% end %>
+            </tbody>
+            </table>
+    <% end %>
+    </div>
+</div>
+    
 
     <h1><%= @user.name %></h1>
 <% else %>
