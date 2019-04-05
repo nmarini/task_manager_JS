@@ -10,24 +10,22 @@
   </head>
 
   <body>
-  <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-      <div class="container">
-        <div class="navbar-header">
-        <a class="navbar-brand" href="<%= root_url %>"/>Home</a>
-        <% if current_user %>
-        <a class="navbar-brand" href="<%= user_path(current_user) %>"/>Profile Page</a>
-        <a class="navbar-brand" href="<%= lists_path %>"/>Lists</a>
-        <a class="navbar-brand" href="<%= logout_path %>"/>Log Out</a>
-        <% end %>
+
+    <div class="navbar navbar-inverse navbar-fixed-top" role="navigation" style="background-color: #e3f2fd;" >
+        <div class="container">
+          <div class="navbar-header">
+          <a class="navbar-brand" href="<%= root_url %>"/>Home</a>
+          <% if current_user %>
+          <a class="navbar-brand" href="<%= user_path(current_user) %>"/>Profile Page</a>
+          <a class="navbar-brand" href="<%= lists_path %>"/>Lists</a>
+          <a class="navbar-brand" href="<%= logout_path %>"/>Log Out</a>
+          <% end %>
+          </div>
+          
         </div>
-        <div class="navbar-collapse collapse">
-          <ul class="nav navbar-nav">
-            
-          </ul>
-        </div><!--/.nav-collapse -->
-      </div>
     </div>
-  <div class="container"  role="main">
+
+  <div class="container" role="main" style="background: linear-gradient(to bottom, #e3f2fd 0%, #ffffff 100%)">
     <%= yield %>
   </div>
   </body>
