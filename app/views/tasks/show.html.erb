@@ -24,6 +24,7 @@
             <% if current_user.list_tasks(@task.list).include?(@task) %>
                 <p><%= link_to "Edit Task", edit_user_task_path(@task) %></p>
                 <p><b>Assign a User to this Task:</b></p>
+
                 <%= form_for @task, url: {controller: 'tasks', action: 'update'} do |f|%>
                     <%= collection_check_boxes(:task, :user_ids, User.all, :id, :name) %>
                     <br>
