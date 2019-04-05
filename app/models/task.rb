@@ -17,6 +17,14 @@ class Task < ApplicationRecord
         users.select do |user|
             user_accepted(user) == false
         end 
-    end  
+    end 
+    
+    def completed_label
+        completed ?  "Completed" : "Update Status"
+    end 
+
+    def completed_klass
+        completed ?  "text-success" : "text-danger"
+    end 
     
 end

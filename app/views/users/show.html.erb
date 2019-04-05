@@ -15,45 +15,39 @@
     <div>
     <% if current_user == @user %> 
         <% unless @user.unaccepted_users_tasks.empty? %>
-        <p class="text-warning">ATTENTION NEEDED, please accept assigned tasks:</p>
-            <table class="table">
-            <tbody>
-            <tr>
-                <th>Tasks</th>
-                <th>Accept</th>
-            </tr>
-            <% @user.unaccepted_users_tasks.each do |user_task| %>
-            <tr>
-                <td><%= link_to user_task.task.title, user_task_path(user_task.task) %></td>
-                <td>
-                <%= form_for(user_task, url: users_task_path(user_task), method: :patch) do |f| %>
+            <p class="text-warning">ATTENTION NEEDED, please accept assigned tasks:</p>
+                <table class="table">
+                <tbody>
+                <tr>
+                    <th>Tasks</th>
+                    <th>Accept</th>
+                </tr>
+                <% @user.unaccepted_users_tasks.each do |user_task| %>
+                    <tr>
+                        <td><%= link_to user_task.task.title, user_task_path(user_task.task) %></td>
+                        <td>
+                        <%= form_for(user_task, url: users_task_path(user_task), method: :patch) do |f| %>
 
-                    <%= f.hidden_field :accepted, value: true %>
-                    <%= f.submit "Accept Task" %>
+                            <%= f.hidden_field :accepted, value: true %>
+                            <%= f.submit "Accept Task" %>
+                        <% end %>
+                        </td>
+                    </tr>
                 <% end %>
-                </td>
-            </tr>
-            <% end %>
-            </tbody>
-            </table>
-    <% end %>
+                </tbody>
+                </table>
+        <% end %>
     </div>
 </div>
-    
-
-    <h1><%= @user.name %></h1>
-<% else %>
-    <h1><%= @user.name %>'s Page</h1>
-<% end %>
-
 
 <div>
+        <h1><%= @user.name %></h1>
+        <h2 class="text-secondary">Your Lists:</h2>
+    <% else %>
+        <h1><%= @user.name %>'s Page</h1>
+        <h2 class="text-secondary">Their Lists:</h2>
+    <% end %>
     <div>
-        <% if current_user == @user %>
-        <h2>Your Lists:</h2>
-        <% else %>
-        <h2>Their Lists:</h2>
-        <% end %>
         <table class="table">
             <tbody>
                 <tr>
@@ -69,7 +63,7 @@
                     <% else %>
                         <td class="text-danger">Incomplete</td>
                     <% end %>
-                    <td><%= link_to "Expand #{list.title}", user_list_path(@user, list) %></td>
+                    <td><%= link_to "Expand", user_list_path(@user, list) %></td>
                 <% end %>
                 </tr>
             </tbody>
@@ -81,9 +75,9 @@
 
     <div>
     <% if current_user == @user %>
-        <h2>Your Tasks:</h2>
+        <h2 class="text-secondary">Your Tasks:</h2>
         <% else %>
-        <h2>Their Tasks:</h2>
+        <h2 class="text-secondary">Their Tasks:</h2>
     <% end %>
         <table class="table">
         
@@ -109,7 +103,7 @@
                     <% else %>
                     <td class="text-warning">Unaccepted</td>
                     <% end %>
-                    <td><%= link_to "Checkout #{task.title}", user_task_path(@user, task) %></td>
+                    <td><%= link_to "Checkout", user_task_path(@user, task) %></td>
             <% end %>
             </tr>
         </tbody>

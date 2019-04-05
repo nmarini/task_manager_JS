@@ -1,62 +1,55 @@
-<div>
-   
-<div>
-    <h1><%= @task.title %></h1>
-    <% if @task.completed %>
-    <p class="text-info"><span class="border border-success">Note: <%= @task.note %></span></p>
-    <% else %>
-    <p class="text-info"><span class="border border-danger">Note: <%= @task.note %></span></p>
-    <% end %>
-    <p>Return to list: <%= link_to @task.list.title, list_path(@task.list) %></p>
-    <% if @task.completed %>
-    <p class="text-info"><span class="text-success">Status: <%= @task.status %></span></p>
-    <% else %>
-    <p class="text-info"><span class="text-danger">Status: <%= @task.status %></span></p>
-    <% end %>
-    
-</div>
-<div>
-        <% if current_user.list_tasks(@task.list).include?(@task) %>
-            <div>
-            <p><%= link_to "Edit Task", edit_user_task_path(@task) %></p>
-                <div>
-                    <%= form_for(@task, url: {controller: 'tasks', action: 'update'}) do |f| %>
-                        <%= f.label :completed, "Complete" %>
-                        <%= f.check_box :completed %>
-                        <%= f.submit "Update Status" %>
-                    <% end %>
-                </div>
-                
-            </div>
-    
-            <p><b>Assign a User to this Task:<b></p>
-            <%= form_for @task, url: {controller: 'tasks', action: 'update'} do |f|%>
-                <%= collection_check_boxes(:task, :user_ids, User.all, :id, :name) %>
-                <br>
-                <%= f.submit "Update Assignments" %>
+<div class="container">
+    <div class="row">
+        <div class="col-sm">
+            <h1><%= @task.title %></h1>
+            <% if @task.completed %>
+                <p class="text-info"><span class="border border-success">Note: <%= @task.note %></span></p>
+            <% else %>
+                <p class="text-info"><span class="border border-danger">Note: <%= @task.note %></span></p>
             <% end %>
-        <% end %>
-    <p><b>Users Assigned to Task:<b></p>
-    <% if @task.users %>
-        <ul>
-        <% @task.users.each do |user| %>
-            <li>
-                <%= link_to user.name, user_path(user) %>
-                <% if @task.unaccepted_users.include?(user) %>
-                | <span class="text-warning">Unaccepted</span>
+            <p class="text-secondary">Return to list: <%= link_to @task.list.title, list_path(@task.list) %></p>
+            <% if @task.completed %>
+                <p class="text-info"><span class="text-success">Status: <%= @task.status %></span></p>
+            <% else %>
+                <p class="text-info"><span class="text-danger">Status: <%= @task.status %></span></p>
+            <% end %>
+
+            <%= form_for(@task, url: {controller: 'tasks', action: 'update'}) do |f| %>
+                <%= f.hidden_field :completed, value: true %>
+                <%= f.submit @task.completed_label, class: @task.completed_klass %>
+            <% end %>
+
+        </div>
+        <div class="col-sm">
+            <% if current_user.list_tasks(@task.list).include?(@task) %>
+                <p><%= link_to "Edit Task", edit_user_task_path(@task) %></p>
+                <p><b>Assign a User to this Task:<b></p>
+                <%= form_for @task, url: {controller: 'tasks', action: 'update'} do |f|%>
+                    <%= collection_check_boxes(:task, :user_ids, User.all, :id, :name) %>
+                    <br>
+                    <%= f.submit "Update Assignments" %>
                 <% end %>
-            </li>
-        <% end %>
-        </ul>
-    <% end %>
-</div>
-
-    <% if @task.list.user == current_user %>
-        <p>
-            <%= form_for @task, method: :delete do |f|%>
-                <%= f.submit "Delete Task", class: "text-danger" %>
             <% end %>
-        </p>
-    <% end %> 
-
+        <p><b>Users Assigned to Task:<b></p>
+        <% if @task.users %>
+            <ul>
+            <% @task.users.each do |user| %>
+                <li>
+                    <%= link_to user.name, user_path(user) %>
+                    <% if @task.unaccepted_users.include?(user) %>
+                    |   <span class="text-warning">Unaccepted</span>
+                    <% end %>
+                </li>
+            <% end %>
+            </ul>
+        <% end %>
+        </div>
+    </div>
+        <% if @task.list.user == current_user %>
+            <p>
+                <%= form_for @task, method: :delete do |f|%>
+                    <%= f.submit "Delete Task", class: "text-danger" %>
+                <% end %>
+            </p>
+        <% end %> 
 </div>
