@@ -41,20 +41,25 @@
                 
             </div>
     
-    <p><b>Assign a User to this Task:<b></p>
-    <%= form_for @task, url: {controller: 'tasks', action: 'update'} do |f|%>
-        <%= collection_check_boxes(:task, :user_ids, User.all, :id, :name) %>
-        <br>
-        <%= f.submit "Update Assignments" %>
-    <% end %>
-    <% end %>
+            <p><b>Assign a User to this Task:<b></p>
+            <%= form_for @task, url: {controller: 'tasks', action: 'update'} do |f|%>
+                <%= collection_check_boxes(:task, :user_ids, User.all, :id, :name) %>
+                <br>
+                <%= f.submit "Update Assignments" %>
+            <% end %>
+        <% end %>
     <p><b>Users Assigned to Task:<b></p>
     <% if @task.users %>
-    <ul>
-    <% @task.users.each do |user| %>
-        <li><%= link_to user.name, user_path(user) %></li>
-    <% end %>
-    </ul>
+        <ul>
+        <% @task.users.each do |user| %>
+            <li>
+                <%= link_to user.name, user_path(user) %>
+                <% if @task.unaccepted_users.include?(user) %>
+                | <span class="text-warning">Unaccepted</span>
+                <% end %>
+            </li>
+        <% end %>
+        </ul>
     <% end %>
 </div>
 

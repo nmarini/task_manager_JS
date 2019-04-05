@@ -12,5 +12,11 @@ class Task < ApplicationRecord
     def user_accepted(user)
         users_task.find{|user_task|user_task.user_id == user.id}.accepted
     end 
+
+    def unaccepted_users
+        users.select do |user|
+            user_accepted(user) == false
+        end 
+    end  
     
 end

@@ -1,16 +1,18 @@
-<% if current_user == @user && !@user.unaccepted_tasks.empty? %>
+<% if current_user == @user %> 
+    <% unless @user.unaccepted_users_tasks.empty? %>
     <p class="text-warning">ATTENTION NEEDED, please accept assigned tasks:</p>
         <table class="table">
         <tbody>
         <tr>
             <th>Tasks</th>
-            <th>Check and Accept</th>
+            <th>Accept</th>
         </tr>
-        <% @user_tasks.each do |user_task| %>
+        <% @user.unaccepted_users_tasks.each do |user_task| %>
             <td><%= link_to user_task.task.title, user_task_path(user_task.task) %></td>
             <td>
             <%= form_for(user_task, url: users_task_path(user_task), method: :patch) do |f| %>
-                <%= f.check_box :accepted %>
+
+                <%= f.hidden_field :accepted, value: true %>
                 <%= f.submit "Accept Task" %>
             <% end %>
             </td>
@@ -19,8 +21,8 @@
         </tr>
         </tbody>
         </table>
-<% end %>
-<% if current_user == @user %>
+        <% end %>
+
     <h1><%= @user.name %></h1>
 <% else %>
     <h1><%= @user.name %>'s Page</h1>
@@ -87,7 +89,7 @@
                     <% else %>
                     <td class="text-warning">Unaccepted</td>
                     <% end %>
-                    <td><%= link_to "Checkout #{task.title}", user_task_path(task) %></td>
+                    <td><%= link_to "Checkout #{task.title}", user_task_path(@user, task) %></td>
             <% end %>
             </tr>
         </tbody>

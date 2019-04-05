@@ -1,6 +1,6 @@
 class UsersTasksController < ApplicationController
-    def update 
-        @user_task = UsersTask.find_by(id: params[:users_task][:accepted])
+    def update
+        @user_task = UsersTask.find_by(id: params[:id])
         if @user_task.update(users_task_params)
             redirect_to user_path(@user_task.user_id)
         else

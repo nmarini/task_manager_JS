@@ -18,21 +18,17 @@ class User < ApplicationRecord
         end  
     end
 
-    def unaccepted_tasks
-        tasks.collect do |task|
-            if !task.user_accepted(self)
-                task
-            end 
-        end 
+    def unaccepted_users_tasks
+        UsersTask.unaccepted_by_user(self)
     end 
 
-    def accepted_tasks 
-        tasks.collect do |task| 
-            if task.user_accepted(self) 
-                task
-            end 
-        end 
-    end 
+    # def accepted_tasks 
+    #     tasks.collect do |task| 
+    #         if task.user_accepted(self) 
+    #             task
+    #         end 
+    #     end 
+    # end 
     
     def list_tasks(user_list)
         if lists.include?(user_list)
