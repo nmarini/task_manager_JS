@@ -10,7 +10,7 @@ class UsersController < ApplicationController
 
         if @user.save
             session[:user_id] = @user.id 
-            redirect_to user_path(@user)
+            session_login(@user)
         else
             render 'new'
         end 
@@ -18,7 +18,20 @@ class UsersController < ApplicationController
 
     def show
         @user = User.find_by_id(params[:id])
+    end
+
+    def edit 
+        @user = User.find_by_id(params[:id])
     end 
+    
+    def update
+        @user = User.find_by(id: params[:id])
+        if @user.update(user_params)
+            redirect_to user_pat(@user)
+        else 
+            render 'edit'
+        end 
+    end
 
     private 
 

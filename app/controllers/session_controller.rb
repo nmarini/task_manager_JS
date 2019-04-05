@@ -9,9 +9,9 @@ class SessionController < ApplicationController
     if auth_hash = request.env["omniauth.auth"]
       user = User.find_or_create_by_omniauth(auth_hash)
       session_login(user)
-    elsif user = User.find_by(email: params[:email]) 
-       if user.authenticate(params[:password])
-          session_login(user)
+    elsif @user = User.find_by(email: params[:email]) 
+       if @user.authenticate(params[:password])
+          session_login(@user)
        else
         flash[:message] = "Incorrect Password!"
         render controller: 'users', action: 'new'
@@ -24,13 +24,6 @@ class SessionController < ApplicationController
 
   def destroy
     session.delete :user_id
-    redirect_to root_path
-  end 
-
-  private 
-
-  def session_login(user)
-    session[:user_id] = user.id
     redirect_to root_path
   end 
 end

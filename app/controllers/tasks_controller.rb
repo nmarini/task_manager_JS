@@ -7,7 +7,7 @@ class TasksController < ApplicationController
     def create 
         @task = Task.create(task_params)
         if @task.save
-            redirect_to list_task_path(task.list, task)
+            redirect_to list_task_path(@task.list, @task)
         else
             @list = List.find_by(id: params[:task][:list_id])
             render 'new' 

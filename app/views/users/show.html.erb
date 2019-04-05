@@ -42,6 +42,7 @@
 
 <div>
         <h1><%= @user.name %></h1>
+        <p><%= link_to "Edit Info", edit_user_path(@user) %></p>
         <h2 class="text-secondary">Your Lists:</h2>
     <% else %>
         <h1><%= @user.name %>'s Page</h1>
