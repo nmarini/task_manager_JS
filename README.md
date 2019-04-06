@@ -6,10 +6,10 @@ This app is designed to allow a user to create lists with tasks associated with 
 Clone the repository: git@github.com:nmarini/task_manager.git
 
 Then run:
-  thin start --ssl
+thin start --ssl
   
 Then visit:
-  https://localhost:3000
+https://localhost:3000
   
 ## Usage
 
