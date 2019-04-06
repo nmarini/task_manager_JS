@@ -5,7 +5,13 @@ This app is designed to allow a user to create lists with tasks associated with 
 
 Clone the repository: git@github.com:nmarini/task_manager.git
 
-Then run:
+Run: 
+bundle install
+
+Then Run:
+rake db:migrate 
+
+Then Run:
 thin start --ssl
   
 Then visit:
