@@ -8,6 +8,9 @@ Clone the repository: git@github.com:nmarini/task_manager.git
 Then run:
   thin start --ssl
   
+Then visit:
+  https://localhost:3000
+  
 ## Usage
 
 A user is first directed to create an account or login (via an already exisiting account, or through Facebook).
