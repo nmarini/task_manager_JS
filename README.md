@@ -1,5 +1,5 @@
 # Task Manager
-This app is designed to allow a user to create lists with tasks associated with those lists.  The tasks are then assigned to other users, who must accept the task and then complete the task.  Users are able to view their own lists and tasks, along with other users' lists and tasks.
+This app is designed to allow a user to create lists and add tasks onto those lists.  The tasks are then assigned to other users, who must accept the task and then complete the task.  Users are able to view their own lists and tasks, along with other users' lists and tasks.
 
 ## Installation
 
