@@ -1,12 +1,12 @@
 <div>
-    <% if @user.errors.any? %>
+    <% if @unaccepted_tasks.errors.any? %>
         <div id="error_explanation">
             <h2 class="text-danger">
-                <%= pluralize(@user.errors.count, "error") %> prohibited an update from occuring:
+                <%= pluralize(@unaccepted_tasks.errors.count, "error") %> prohibited an update from occuring:
             </h2>
 
             <ul>
-            <% @user.errors.full_messages.each do |message| %>
+            <% @unaccepted_tasks.errors.full_messages.each do |message| %>
                 <li class="text-danger"><%= message %></li>
             <% end %>
             </ul>
