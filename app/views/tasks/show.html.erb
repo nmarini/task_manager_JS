@@ -15,12 +15,15 @@
             <% end %>
 
             <%= form_for(@task, url: {controller: 'tasks', action: 'update'}) do |f| %>
+                
                 <% if @task.completed %>
                 <%= f.hidden_field :completed, value: false  %>
                 <% else %>
                 <%= f.hidden_field :completed, value: true %>
                 <% end %>
+                
                 <%= f.submit @task.completed_label, class: @task.completed_klass %>
+
             <% end %>
 
         </div>
@@ -36,19 +39,20 @@
                 <% end %>
             <% end %>
         <div class="p-3">
-        <p><b>Users Assigned to Task:</b></p>
-        <% if @task.users %>
-            <ul>
-            <% @task.users.each do |user| %>
-                <li>
-                    <%= link_to user.name, user_path(user) %>
-                    <% if @task.unaccepted_users.include?(user) %>
-                    |   <%= link_to "Unaccepted", user_path(current_user), class: "text-warning" %>
-                    <% end %>
-                </li>
+            <p><b>Users Assigned to Task:</b></p>
+
+            <% if @task.users %>
+                <ul>
+                <% @task.users.each do |user| %>
+                    <li>
+                        <%= link_to user.name, user_path(user) %>
+                        <% if @task.unaccepted_users.include?(user) %>
+                        |   <%= link_to "Unaccepted", user_path(current_user), class: "text-warning" %>
+                        <% end %>
+                    </li>
+                <% end %>
+                </ul>
             <% end %>
-            </ul>
-        <% end %>
         </div>
         </div>
     </div>

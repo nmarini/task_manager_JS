@@ -1,8 +1,12 @@
 <h1><%= @list.title %></h1>
+
 <h5 class="text-secondary">Created by: <%= link_to @list.user.name, user_path(@list.user) %> </h5>
+
 <% if current_user.lists.include?(@list) %>
-<p><%= link_to "Change Title", edit_user_list_path(@list) %></p>
-<p><%= link_to "Add a Task", new_list_task_path(@list) %></p>
+    <p><%= link_to "Change Title", edit_user_list_path(@list) %></p>
+    
+    <p><%= link_to "Add a Task", new_list_task_path(@list) %></p>
+
 <% end %>
 
 <div>
@@ -13,6 +17,7 @@
             <th>Complete/Incomplete</th>
             <th>Checkout Task</th>
         </tr>
+
         <% @list.tasks.each do |task| %>
         <tr>
             <td><%= task.title %></td>
@@ -22,15 +27,19 @@
             <td class="text-danger"><%= task.status %></td>
             <% end %>
             <td><%= link_to "Checkout", list_task_path(@list, task) %></td>
+
         <% end %>
         </tr>
+
     </tbody>
     </table>
+
     <% if current_user.lists.include?(@list) %>
-    <p>
-        <%= form_for @list, method: :delete do |f| %>
-            <%= f.submit "Delete List", class: "text-danger" %>
-        <% end %>
-    </p>
+        <p>
+            <%= form_for @list, method: :delete do |f| %>
+                <%= f.submit "Delete List", class: "text-danger" %>
+            <% end %>
+        </p>
+        
 <% end %>
 </div>

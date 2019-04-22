@@ -30,11 +30,11 @@
             <% end %>
             </tr>
         </tbody>
-        </table>
-        </div>
+    </table>
+    </div>
+
+    <p><%= link_to "Log Out", logout_path %></p>
     
-        
-        <p><%= link_to "Log Out", logout_path %></p>
     <% else %>
         <div>    
             <h1>Welcome to Task Manager!</h1>
@@ -43,9 +43,9 @@
             
             <p class="text-secondary">Please signup or login below... </p>
         </div>
-        <p><%= link_to "Sign Up", signup_path %></p>
-        <p><%= link_to "Log In", login_path %></p>
-        <p><%= link_to('Log in with Facebook!', '/auth/facebook') %></p>
+            <p><%= link_to "Sign Up", signup_path %></p>
+            <p><%= link_to "Log In", login_path %></p>
+            <p><%= link_to('Log in with Facebook!', '/auth/facebook') %></p>
     <% end %>
 </div>
 

@@ -1,23 +1,24 @@
 <div>
-<table class="table">
-<tbody>
-    <tr>
-        <th>Lists</th>
-        <th>Complete/Incomplete</th>
-        <th>Expand List</th>
-    </tr>
-    <% @lists.each do |list| %>
+    <table class="table">
+    <tbody>
         <tr>
-            <td><%= list.title %></td>
-        <% if list.list_complete? %>
-            <td class="text-success">Complete</td>
-        <% else %>
-            <td class="text-danger">Incomplete</td>
+            <th>Lists</th>
+            <th>Complete/Incomplete</th>
+            <th>Expand List</th>
+        </tr>
+        <% @lists.each do |list| %>
+            <tr>
+                <td><%= list.title %></td>
+            <% if list.list_complete? %>
+                <td class="text-success">Complete</td>
+            <% else %>
+                <td class="text-danger">Incomplete</td>
+            <% end %>
+            <td><%= link_to "Expand", list_path(list) %></td>
         <% end %>
-        <td><%= link_to "Expand", list_path(list) %></td>
-    <% end %>
-    </tr>
-</tbody>
-</table>
-<p><%= link_to "Create a List", new_user_list_path(current_user) %></p>
+        </tr>
+    </tbody>
+    </table>
+    
+    <p><%= link_to "Create a List", new_user_list_path(current_user) %></p>
 </div>
