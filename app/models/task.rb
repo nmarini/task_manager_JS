@@ -9,13 +9,13 @@ class Task < ApplicationRecord
         completed ? "Complete" : "Incomplete"
     end 
 
-    def user_accepted(user)
+    def user_accepted?(user)
         users_task.find{|user_task|user_task.user_id == user.id}.accepted
     end 
 
     def unaccepted_users
         users.select do |user|
-            user_accepted(user) == false
+            user_accepted?(user) == false
         end 
     end 
     

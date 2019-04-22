@@ -12,7 +12,7 @@
             </ul>
         </div>
     <% end %>
-    
+
     <div>
     <% if current_user == @user %> 
         <% unless @unaccepted_tasks.empty? %>
@@ -100,7 +100,7 @@
                     <td class="text-danger"><%= task.status %></td>
                     <% end %>
 
-                    <% if task.user_accepted(@user) %>
+                    <% if task.user_accepted?(@user) %>
                     <td class="text-success">Accepted</td>
                     <% else %>
                     <td class="text-warning">Unaccepted</td>

@@ -20,7 +20,7 @@
                     <td class="text-danger"><%= task.status %></td>
                     <% end %>
 
-                    <% if task.user_accepted(current_user) %>
+                    <% if task.user_accepted?(current_user) %>
                     <td class="text-success">Accepted</td>
                     <% else %>
                     <td><%= link_to "Unaccepted", user_path(current_user), class: "text-warning" %></td>
