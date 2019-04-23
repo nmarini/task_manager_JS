@@ -45,7 +45,7 @@
                     <li>
                         <%= link_to user.name, user_path(user) %>
                         <% if @task.unaccepted_users.include?(user) %>
-                        |   <%= link_to "Unaccepted", user_path(current_user), class: "text-warning" %>
+                        |   <span class="text-warning">Unaccepted</span>
                         <% end %>
                     </li>
                 <% end %>
