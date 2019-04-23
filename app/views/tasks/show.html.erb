@@ -8,9 +8,7 @@
                 <p class="text-info"><span class="border border-danger">Note: <%= @task.note %></span></p>
             <% end %>
             <p class="text-secondary">Return to list: <%= link_to @task.list.title, list_path(@task.list) %></p>
-            <% if @task.completed %>
-                <p class="text-info"><span class="text-success">Status: <%= @task.status %></span></p>
-            <% else %>
+            <% if !@task.completed %>
                 <p class="text-info"><span class="text-danger">Status: <%= @task.status %></span></p>
             <% end %>
 
@@ -64,3 +62,8 @@
             </p>
         <% end %> 
 </div>
+
+
+
+
+
