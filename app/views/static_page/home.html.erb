@@ -23,7 +23,7 @@
                     <% if task.user_accepted?(current_user) %>
                     <td class="text-success">Accepted</td>
                     <% else %>
-                    <td><%= link_to "Unaccepted", user_path(current_user), class: "text-warning" %></td>
+                    <td class="text-warning">Unaccepted</td>
                     <% end %>
 
                     <td><%= link_to "Checkout", user_task_path(current_user, task) %></td>
