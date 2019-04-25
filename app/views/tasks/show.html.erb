@@ -43,9 +43,9 @@
                 <ul>
                 <% @task.users.each do |user| %>
                     <li>
-                        <%= link_to user.name, user_path(user) %>|
+                        |<%= link_to user.name, user_path(user) %>|
                         <br>
-                        <% if user == current_user %>
+                        <% if user == current_user && !@user_task.accepted %>
                         
                         <%= form_for(@user_task, url: users_task_path(@user_task), method: :patch) do |f| %>
 
