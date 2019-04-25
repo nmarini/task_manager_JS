@@ -31,4 +31,4 @@
 /config/master.key
 
 # Ignore omniauth secret keys.
-#.env
+.env
