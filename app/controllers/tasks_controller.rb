@@ -15,7 +15,7 @@ class TasksController < ApplicationController
 
     def show
         @task = Task.find_by(id: params[:id])
-        @users_task = @task.users_task.find{|user_task|user_task.user_id == current_user.id}
+        @user_task = @task.users_task.find{|user_task|user_task.user_id == current_user.id}
     end 
 
     def edit 

@@ -43,9 +43,19 @@
                 <ul>
                 <% @task.users.each do |user| %>
                     <li>
-                        <%= link_to user.name, user_path(user) %>
-                        <% if @task.unaccepted_users.include?(user) %>
-                        |   <span class="text-warning">Unaccepted</span>
+                        <%= link_to user.name, user_path(user) %>|
+                        <br>
+                        <% if user == current_user %>
+                        
+                        <%= form_for(@user_task, url: users_task_path(@user_task), method: :patch) do |f| %>
+
+                            <%= f.hidden_field :accepted, value: true %>
+                            <%= f.submit "Accept Task", class: 'text-warning' %>
+                        
+                        <% end %>
+                        <% elsif @task.unaccepted_users.include?(user) %>
+                            <span class="text-warning">Unaccepted</span>
+                  
                         <% end %>
                     </li>
                 <% end %>
