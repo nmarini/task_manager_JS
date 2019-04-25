@@ -43,7 +43,7 @@
                 <ul>
                 <% @task.users.each do |user| %>
                     <li>
-                        |<%= link_to user.name, user_path(user) %>|
+                        <b>|</b><%= link_to user.name, user_path(user) %><b>|</b>
                         <br>
                         <% if user == current_user && !@user_task.accepted %>
                         
