@@ -6,7 +6,6 @@ Rails.application.routes.draw do
   post '/login' => 'session#create'
   get '/auth/facebook/callback' => 'session#create'
   get '/logout' => 'session#destroy'
-  
 
   resources :tasks, only: [:create, :destroy, :edit, :update] do 
     resources :users, only: [:show]
