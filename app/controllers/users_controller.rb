@@ -18,7 +18,7 @@ class UsersController < ApplicationController
 
     def show
         @user = User.find_by_id(params[:id])
-        @unaccepted_tasks = UsersTask.unaccepted_by_user(@user)
+        @unaccepted_user_tasks = UsersTask.unaccepted_by_user(@user)
     end
 
     def edit 

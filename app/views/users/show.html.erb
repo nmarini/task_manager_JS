@@ -1,7 +1,7 @@
 <div>
     <div>
     <% if current_user == @user %> 
-        <% unless @unaccepted_tasks.empty? %>
+        <% unless @unaccepted_user_tasks.empty? %>
             <p class="text-warning"><b>ATTENTION NEEDED, please accept assigned tasks:</b></p>
                 <table class="table">
                 <tbody>
@@ -9,7 +9,7 @@
                     <th>Tasks</th>
                     <th>Accept</th>
                 </tr>
-                <% @unaccepted_tasks.each do |user_task| %>
+                <% @unaccepted_user_tasks.each do |user_task| %>
                     <tr>
                         <td><%= link_to user_task.task.title, user_task_path(user_task.user, user_task.task) %></td>
                         <td>
