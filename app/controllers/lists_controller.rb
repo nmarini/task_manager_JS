@@ -3,15 +3,15 @@ class ListsController < ApplicationController
     def index
         @lists = List.all
         respond_to do |format|
-            format.html {render :index}
+            format.html {redirect_to :index}
             format.json {render json: @lists}
           end
-    end 
+    end  
 
     def new
         @list = List.new(user_id: current_user.id)
         respond_to do |format|
-            format.html {render :new
+            format.html {redirect_to :new
             format.json {render json: @list}
           end
         
