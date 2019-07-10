@@ -20,13 +20,17 @@ class TasksController < ApplicationController
         @task = Task.find_by(id: params[:id])
         @user_task = @task.users_task.find{|user_task|user_task.user_id == current_user.id}
         respond_to do |format|
-            format.html {redirect_to tas_path(@task)
-            format.json {render json: @task, @user_task}
+            format.html {render task_path(@task)
+            format.json {render json: @task}
           end
     end 
 
     def edit 
         @task = Task.find_by(id: params[:id])
+        respond_to do |format|
+            format.html {render :edit}
+            format.json {render json: @task}
+          end
     end 
 
     def update

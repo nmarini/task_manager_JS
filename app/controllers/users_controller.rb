@@ -20,13 +20,18 @@ class UsersController < ApplicationController
         @user = User.find_by_id(params[:id])
         @unaccepted_user_tasks = UsersTask.unaccepted_by_user(@user)
         respond_to do |format|
-            format.html {redirect_to user_path(@user)}
-            format.json {render json: @user, @unaccepted_user_tasks}
+            format.html {render :show}
+            format.json {render json: @user}
           end
     end
 
     def edit 
         @user = User.find_by_id(params[:id])
+        respond_to do |format|
+            format.html {render :edit}
+            format.json {render json: @user}
+          end
+        
     end 
     
     def update
