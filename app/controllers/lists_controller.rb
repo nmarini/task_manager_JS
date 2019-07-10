@@ -2,17 +2,28 @@ class ListsController < ApplicationController
 
     def index
         @lists = List.all
+        respond_to do |format|
+            format.html {render :index}
+            format.json {render json: @lists}
+          end
     end 
 
     def new
         @list = List.new(user_id: current_user.id)
+        respond_to do |format|
+            format.html {render :new
+            format.json {render json: @list}
+          end
         
     end 
 
     def create 
         @list = List.create(list_params)
         if @list.save
-            redirect_to user_list_path(current_user, @list)
+            respond_to do |format|
+                format.html {redirect_to user_list_path(current_user, @list)
+                format.json {render json: @list}
+              end
         else
             render 'new'
         end 
@@ -20,17 +31,28 @@ class ListsController < ApplicationController
 
     def show
         @list = List.find_by(id: params[:id])
+        respond_to do |format|
+            format.html {redirect_to list_path(@list)
+            format.json {render json: @list}
+          end
     end 
 
     def edit
         @list = List.find_by(id: params[:id])
+        respond_to do |format|
+            format.html {redirect_to edit_list_path(@list)
+            format.json {render json: @list}
+          end
     end 
 
     def update 
         @list = List.find_by(id: params[:id])
     
         if @list.update(list_params)
-            redirect_to list_path(@list)
+            respond_to do |format|
+                format.html {redirect_to list_path(@list)
+                format.json {render json: @list}
+              end
         else 
             render 'edit'
         end 
