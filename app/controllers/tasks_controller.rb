@@ -2,10 +2,6 @@ class TasksController < ApplicationController
 
     def new
         @task = Task.new(list_id: params[:list_id])
-        respond_to do |format|
-            format.html {redirect_to :new
-            format.json {render json: @task}
-          end
     end 
 
     def create 
@@ -31,10 +27,6 @@ class TasksController < ApplicationController
 
     def edit 
         @task = Task.find_by(id: params[:id])
-        respond_to do |format|
-            format.html {redirect_to edit_task_path(@task)
-            format.json {render json: @task}
-          end
     end 
 
     def update

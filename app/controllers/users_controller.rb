@@ -19,6 +19,10 @@ class UsersController < ApplicationController
     def show
         @user = User.find_by_id(params[:id])
         @unaccepted_user_tasks = UsersTask.unaccepted_by_user(@user)
+        respond_to do |format|
+            format.html {redirect_to user_path(@user)}
+            format.json {render json: @user, @unaccepted_user_tasks}
+          end
     end
 
     def edit 
@@ -28,7 +32,10 @@ class UsersController < ApplicationController
     def update
         @user = User.find_by(id: params[:id])
         if @user.update(user_params)
-            redirect_to user_path(@user)
+            respond_to do |format|
+                format.html {redirect_to user_path(@user)}
+                format.json {render json: @user}
+            end
         else 
             render 'edit'
         end 

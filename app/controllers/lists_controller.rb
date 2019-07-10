@@ -10,10 +10,6 @@ class ListsController < ApplicationController
 
     def new
         @list = List.new(user_id: current_user.id)
-        respond_to do |format|
-            format.html {redirect_to :new
-            format.json {render json: @list}
-          end
         
     end 
 
@@ -39,10 +35,6 @@ class ListsController < ApplicationController
 
     def edit
         @list = List.find_by(id: params[:id])
-        respond_to do |format|
-            format.html {redirect_to edit_list_path(@list)
-            format.json {render json: @list}
-          end
     end 
 
     def update 
