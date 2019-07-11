@@ -17,7 +17,7 @@ class ListsController < ApplicationController
         @list = List.create(list_params)
         if @list.save
             respond_to do |format|
-                format.html {redirect_to user_list_path(current_user, @list)
+                format.html {redirect_to user_list_path(current_user, @list)}
                 format.json {render json: @list}
               end
         else
@@ -28,7 +28,7 @@ class ListsController < ApplicationController
     def show
         @list = List.find_by(id: params[:id])
         respond_to do |format|
-            format.html {redirect_to list_path(@list)
+            format.html {redirect_to list_path(@list)}
             format.json {render json: @list}
           end
     end 
@@ -42,7 +42,7 @@ class ListsController < ApplicationController
     
         if @list.update(list_params)
             respond_to do |format|
-                format.html {redirect_to list_path(@list)
+                format.html {redirect_to list_path(@list)}
                 format.json {render json: @list}
               end
         else 
