@@ -24,6 +24,7 @@ function showListListener() {
                 let listItem = showList(list)
                 $("ol#lists").append(listItem);
                 $('button#show-lists').hide()
+                // put listener for showList(list) here
             })
         })
     })
@@ -35,7 +36,12 @@ function showList(list) {
 }
 
 function ListTasksListener(list) {
-
+    $(`button#data-list-${list.id}`).on("click", function(event) {
+        event.preventDefault();
+        list.tasks.forEach((task) => {
+            
+        })
+    })
 }
 
 function showTaskListener(task) {
