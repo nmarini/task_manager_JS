@@ -3,7 +3,7 @@ class ListsController < ApplicationController
     def index
         @lists = List.all
         respond_to do |format|
-            format.html {redirect_to :index}
+            format.html {render :index}
             format.json {render json: @lists}
           end
     end  
@@ -28,7 +28,7 @@ class ListsController < ApplicationController
     def show
         @list = List.find_by(id: params[:id])
         respond_to do |format|
-            format.html {redirect_to list_path(@list)}
+            format.html {render :show}
             format.json {render json: @list}
           end
     end 

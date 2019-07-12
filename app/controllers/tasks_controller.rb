@@ -8,7 +8,7 @@ class TasksController < ApplicationController
         @task = Task.create(task_params)
         if @task.save
             respond_to do |format|
-                format.html {redirect_to list_task_path(@task.list, @task))}
+                format.html {redirect_to list_task_path(@task.list, @task)}
                 format.json {render json: @task}
             end
         else
@@ -20,7 +20,7 @@ class TasksController < ApplicationController
         @task = Task.find_by(id: params[:id])
         @user_task = @task.users_task.find{|user_task|user_task.user_id == current_user.id}
         respond_to do |format|
-            format.html {render task_path(@task)}
+            format.html {render :show}
             format.json {render json: @task}
           end
     end 
