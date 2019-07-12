@@ -1,5 +1,5 @@
 class ListSerializer < ActiveModel::Serializer
-  attributes :id, :title, :user_id
+  attributes :id, :title
 
   has_many :tasks
   belongs_to :user
