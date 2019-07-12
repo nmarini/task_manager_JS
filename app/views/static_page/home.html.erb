@@ -33,7 +33,13 @@
     </table>
     </div>
 
-    <p><%= link_to "Create List", new_user_list_path(current_user) %></p>
+    <div id="list-buttons">
+        <button class="btn-primary" id="create-list">Create List</button>
+        <button class="btn-info" id="show-lists">Show Lists</button>
+    </div>
+    <ol id="lists">
+    </ol>
+    
     
     <% else %>
         <div>    
