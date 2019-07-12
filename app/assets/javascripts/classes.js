@@ -1,24 +1,36 @@
 class User {
-    constructor(name, email) {
+    constructor(id, name, email) {
+        this.id = id;
         this.name = name;
         this.email = email;
-        lists = [];
+        this.lists = [];
     }
 }
 
 class List {
-    constructor(title, user) {
+    constructor(id, title, userId) {
+        this.id = id;
         this.title = title;
-        this.user = user;
-        tasks = [];
+        this.userId = userId;
+        this.tasks = [];
+    }
+
+    completed() {
+        if (this.tasks.find((task) => {return task.completed === false})) {
+            return "Incomplete"
+        } else {
+            return "Complete"
+        }
     }
 }
 
 class Task {
-    constructor(title, note, completed, list) {
+    constructor(id, title, note, completed, listId) {
+        this.id = id;
         this.title = title;
         this.note = note;
         this.completed = completed;
-        this.list = list;
+        this.listId = listId;
+        this.users = [];
     }
 }
