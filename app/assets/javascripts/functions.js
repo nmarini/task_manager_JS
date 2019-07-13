@@ -15,35 +15,46 @@ function showListListener() {
                 let list = new List(id, title, userId);
                 li.tasks.forEach((task) => {
                     list.tasks.push({
-                        id: task.id, 
-                        title: task.title, 
-                        note: task.note, 
                         completed: task.completed
                     })
                 })
                 let listItem = showList(list)
                 $("ol#lists").append(listItem);
                 $('button#show-lists').hide()
-                // put listener for showList(list) here
+                showTasksListener(list) 
             })
         })
     })
 }
 
 function showList(list) {
-    return `<li>${list.title} <br> <b>Status:</b> ${list.completed()} <button id="data-list-${list.id}">Show</button>
+    return `<li id="data-list-${list.id}">${list.title} <br> <b>Status:</b> ${list.completed()} <button id="show-list-${list.id}">Show</button><br>
     </li><br>`
 }
 
-function ListTasksListener(list) {
-    $(`button#data-list-${list.id}`).on("click", function(event) {
+function showTasksListener(list) {
+    $(`button#show-list-${list.id}`).on("click", function(event) {
         event.preventDefault();
-        list.tasks.forEach((task) => {
-            
+        $.get(`/lists/` + list.id + `.json`, function(resp){
+            let li = resp.list
+            showTasks(li);            
         })
+       
     })
 }
 
-function showTaskListener(task) {
+function showTasks(list) {
+    $(`li#data-list-${list.id}`).append(`<ol id="list-${list.id}-tasks"></ol>`)
+        list.tasks.forEach((task) => {
+            $(`ol#list-${list.id}-tasks`).append(`<li id="list-${list.id}-task-${task.id}">${task.title} <br> <button id="show-task-${task.id}">Show</button></li><br>`)
+            taskItemListener(task);
+        })
+}
+
+function taskItemListener(task) {
+
+}
+
+function taskItem(task) {
 
 }
