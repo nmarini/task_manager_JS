@@ -1,7 +1,5 @@
 $(() => {
-    //put listeners here
-    showListListener()
-    
+    showListListener() 
 })
 
 function showListListener() {
