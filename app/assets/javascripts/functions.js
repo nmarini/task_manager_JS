@@ -15,13 +15,6 @@ function showListListener() {
 function showLists(lists) {
     lists.forEach((li) => {
         let list = new List(li);
-        li.tasks.forEach((task) => {
-            list.tasks.push({
-                id: task.id,
-                title: task.title,
-                completed: task.completed
-            })
-        })
         $("ol#lists").append(`<li id="data-list-${list.id}">${list.title} <br> <b>Status:</b> ${list.completed()} <button id="show-list-${list.id}">Show</button><br>
         </li><br>`);
         $('button#show-lists').hide()

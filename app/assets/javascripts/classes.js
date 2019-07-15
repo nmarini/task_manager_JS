@@ -26,7 +26,7 @@ class List {
         let listHtml = `
         <h3>${this.title}<h3>
         <h5>Creator: ${this.user.name}</h5> 
-        <a href="/lists/1/tasks/new">Add a Task</a>
+        <a href="/lists/${this.id}/tasks/new">Add a Task</a>
         `
         return listHtml
     }
