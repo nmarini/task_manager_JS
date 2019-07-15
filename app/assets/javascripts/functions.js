@@ -1,5 +1,6 @@
 $(() => {
-    showListListener() 
+    showListListener();
+    createListListener()
 })
 
 function showListListener() {
@@ -13,10 +14,7 @@ function showListListener() {
 
 function showLists(lists) {
     lists.forEach((li) => {
-        let id = li.id
-        let title = li.title;
-        let userId = li.user.id;
-        let list = new List(id, title, userId);
+        let list = new List(li);
         li.tasks.forEach((task) => {
             list.tasks.push({
                 id: task.id,
@@ -73,3 +71,20 @@ function appendTaskUsers(task, users) {
     })
     
 }
+
+function createListListener() {
+   $("form#new_list").on("submit", function(event) {
+        event.preventDefault(); 
+
+        const values = $(this).serialize();
+
+        $.post("/lists.json", values).done(function(data){
+            $("div#new-list-container").html('') 
+            const newList = new List(data.list);const htmlToAdd = newList.formatShow();
+
+            $("div#new_list_container").html(htmlToAdd)
+            
+        })
+   })
+}
+
