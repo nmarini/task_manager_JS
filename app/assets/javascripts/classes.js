@@ -1,18 +1,18 @@
 class User {
-    constructor(id, name, email) {
-        this.id = id;
-        this.name = name;
-        this.email = email;
-        this.lists = [];
+    constructor(data) {
+        this.id = data.id;
+        this.name = data.name;
+        this.email = data.email;
+        this.lists = data.lists;
     }
 }
 
 class List {
-    constructor(id, title, userId) {
-        this.id = id;
-        this.title = title;
-        this.userId = userId;
-        this.tasks = [];
+    constructor(data) {
+        this.id = data.id;
+        this.title = data.title;
+        this.user = data.user;
+        this.tasks = data.tasks;
     }
 
     completed() {
@@ -22,15 +22,24 @@ class List {
             return "Complete"
         }
     }
+    formatShow() {
+        let listHtml = `
+        <h3>${this.title}<h3>
+        <h5>Creator: ${this.user.name}</h5> 
+        <a href="/lists/1/tasks/new">Add a Task</a>
+        `
+        return listHtml
+    }
+
 }
 
 class Task {
-    constructor(id, title, note, completed, listId) {
-        this.id = id;
-        this.title = title;
-        this.note = note;
-        this.completed = completed;
-        this.listId = listId;
-        this.users = [];
+    constructor(data) {
+        this.id = data.id;
+        this.title = data.title;
+        this.note = data.note;
+        this.completed = data.completed;
+        this.list = data.list;
+        this.users = data.users;
     }
 }
