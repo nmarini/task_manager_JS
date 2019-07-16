@@ -9,6 +9,9 @@ Run:
 bundle install
 
 Then Run:
+rake db:migrate
+
+Then Run:
 thin start --ssl
   
 Then visit:
