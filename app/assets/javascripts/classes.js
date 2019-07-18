@@ -1,11 +1,11 @@
-class User {
-    constructor(data) {
-        this.id = data.id;
-        this.name = data.name;
-        this.email = data.email;
-        this.lists = data.lists;
-    }
-}
+// class User {
+//     constructor(data) {
+//         this.id = data.id;
+//         this.name = data.name;
+//         this.email = data.email;
+//         this.lists = data.lists;
+//     }
+// }
 
 class List {
     constructor(data) {
@@ -33,13 +33,13 @@ class List {
 
 }
 
-class Task {
-    constructor(data) {
-        this.id = data.id;
-        this.title = data.title;
-        this.note = data.note;
-        this.completed = data.completed;
-        this.list = data.list;
-        this.users = data.users;
-    }
-}
+// class Task {
+//     constructor(data) {
+//         this.id = data.id;
+//         this.title = data.title;
+//         this.note = data.note;
+//         this.completed = data.completed;
+//         this.list = data.list;
+//         this.users = data.users;
+//     }
+// }
