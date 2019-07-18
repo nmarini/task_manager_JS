@@ -72,7 +72,8 @@ function createListListener() {
 
         $.post("/lists.json", values).done(function(data){
             $("div#new-list-container").html('') 
-            const newList = new List(data.list);const htmlToAdd = newList.formatShow();
+            const newList = new List(data.list);
+            const htmlToAdd = newList.formatShow();
 
             $("div#new_list_container").html(htmlToAdd)
             
