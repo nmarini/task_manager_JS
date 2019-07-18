@@ -51,7 +51,7 @@ function showTask(list, listTask) {
     $.get("/lists/" + list.id + "/tasks/" + listTask.id + ".json", function(resp) {
         let task = resp.task 
         $(`li#list-${list.id}-task-${task.id}`).append(`<ul id="task-${task.id}"></ul>`)
-        $(`ul#task-${task.id}`).append(`<li id="task-${task.id}-info"> <b>Complete:</b> ${task.completed} <br>
+        $(`ul#task-${task.id}`).append(`<li id="task-${task.id}-info"> <b>Note:</b> ${task.note} <br> <b>Complete:</b> ${task.completed} <br>
             <b>Users Assigned:</b> <ol id="task-${task.id}-users"></ol> </li>`)
         appendTaskUsers(task, task.users)
     })
