@@ -11,7 +11,7 @@
             <% if !@task.completed %>
                 <p class="text-info"><span class="text-danger">Status: <%= @task.status %></span></p>
             <% end %>
-
+            <% if @task.list.user == current_user %>
             <%= form_for(@task, url: {controller: 'tasks', action: 'update'}) do |f| %>
                 
                 <% if @task.completed %>
@@ -23,6 +23,13 @@
                 <%= f.submit @task.completed_label, class: @task.completed_klass %>
 
             <% end %>
+
+            <p>
+                <%= form_for @task, method: :delete do |f|%>
+                    <%= f.submit "Delete Task", class: "text-danger" %>
+                <% end %>
+            </p>
+        <% end %> 
 
         </div>
         <div class="col-sm">
@@ -64,13 +71,6 @@
         </div>
         </div>
     </div>
-        <% if @task.list.user == current_user %>
-            <p>
-                <%= form_for @task, method: :delete do |f|%>
-                    <%= f.submit "Delete Task", class: "text-danger" %>
-                <% end %>
-            </p>
-        <% end %> 
 </div>
 
 
